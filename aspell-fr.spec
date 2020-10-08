@@ -4,9 +4,9 @@
 #
 Name     : aspell-fr
 Version  : 0.50.3
-Release  : 1
-URL      : https://ftp.gnu.org/gnu/aspell/dict/fr/aspell-fr-0.50-3.tar.bz2
-Source0  : https://ftp.gnu.org/gnu/aspell/dict/fr/aspell-fr-0.50-3.tar.bz2
+Release  : 2
+URL      : https://mirrors.kernel.org/gnu/aspell/dict/fr/aspell-fr-0.50-3.tar.bz2
+Source0  : https://mirrors.kernel.org/gnu/aspell/dict/fr/aspell-fr-0.50-3.tar.bz2
 Summary  : French dictionary for aspell
 Group    : Development/Tools
 License  : GPL-2.0
@@ -16,15 +16,6 @@ Patch1: 0001-configure-ignore-unknown-options.patch
 
 %description
 GNU Aspell French Word List Package
-Version 0.50-3
-2002-09-12
-by Kevin Atkinson (kevina@gnu.org)
-Word List by:
-Rémi Vanicat (vanicat at labri u-bordeaux fr)
-GUTenberg association
-Christophe Pythoud (Christophe Pythoud at ling unil ch)
-Source Verson: 0.06
-Source URL: http://perso.wanadoo.fr/remi.vanicat/aspell/
 
 %package license
 Summary: license components for the aspell-fr package.
@@ -36,6 +27,7 @@ license components for the aspell-fr package.
 
 %prep
 %setup -q -n aspell-fr-0.50-3
+cd %{_builddir}/aspell-fr-0.50-3
 %patch1 -p1
 
 %build
@@ -43,24 +35,23 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570023733
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1602132577
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1570023733
+export SOURCE_DATE_EPOCH=1602132577
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/aspell-fr
-cp COPYING %{buildroot}/usr/share/package-licenses/aspell-fr/COPYING
+cp %{_builddir}/aspell-fr-0.50-3/COPYING %{buildroot}/usr/share/package-licenses/aspell-fr/0b184ad51ba2a79e85d2288d5fcf8a1ea0481ea4
 %make_install
 
 %files
@@ -116,4 +107,4 @@ cp COPYING %{buildroot}/usr/share/package-licenses/aspell-fr/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/aspell-fr/COPYING
+/usr/share/package-licenses/aspell-fr/0b184ad51ba2a79e85d2288d5fcf8a1ea0481ea4
