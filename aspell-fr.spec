@@ -4,7 +4,7 @@
 #
 Name     : aspell-fr
 Version  : 0.50.3
-Release  : 2
+Release  : 3
 URL      : https://mirrors.kernel.org/gnu/aspell/dict/fr/aspell-fr-0.50-3.tar.bz2
 Source0  : https://mirrors.kernel.org/gnu/aspell/dict/fr/aspell-fr-0.50-3.tar.bz2
 Summary  : French dictionary for aspell
